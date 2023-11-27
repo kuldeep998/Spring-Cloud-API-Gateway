@@ -1,0 +1,26 @@
+server:
+  port: 9090
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: department-service
+          uri: lb://DEPARTMENT-SERVICE
+          predicates:
+            - Path=/department/**
+
+
+
+        - id: college-service
+          uri: lb://COLLEGE-SERVICE
+          predicates:
+            - Path=/college/**
+
+  application:
+    name: ROUTER-SERVICE
+
+eureka:
+  client:
+    service-url:
+      defaultZone : http://localhost:8761/eureka/
