@@ -9,13 +9,20 @@ spring:
           uri: lb://DEPARTMENT-SERVICE
           predicates:
             - Path=/department/**
-
-
+          filters:
+            - AuthenticationFilter
 
         - id: college-service
           uri: lb://COLLEGE-SERVICE
           predicates:
             - Path=/college/**
+          filters:
+            - AuthenticationFilter
+
+        - id: auth-service
+          uri: lb://AUTH-SERVICE
+          predicates:
+            - Path=/auth/**
 
   application:
     name: ROUTER-SERVICE
